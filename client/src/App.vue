@@ -2,7 +2,11 @@
 import axios from "axios";
 import DescriptionModal from "./components/DescriptionModal.vue"; // 引用 DescriptionModal
 
-const API_URL = "http://localhost:8080/";
+// const API_URL = "http://localhost:8080/";
+// const API_URL = process.env.VUE_APP_API_URL || "http://localhost:8080/";
+const API_URL = "http://app:8080/";
+
+console.log("API位置為 : " + API_URL);
 
 export default {
   name: "App",
@@ -19,7 +23,8 @@ export default {
   },
   methods: {
     async refreshData() {
-      axios.get(API_URL + "api/todoapp/GetNote").then((response) => {
+      // axios.get(API_URL + "api/todoapp/GetNote")
+      axios.get("http://app:8080/api/todoapp/GetNote").then((response) => {
         this.notes = response.data;
         console.log(this.notes);
       });

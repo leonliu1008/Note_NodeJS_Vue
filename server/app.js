@@ -1,14 +1,15 @@
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
-const port = 8080;
 const cors = require("cors");
 const multer = require("multer");
 const crudRoute = require("./routes").crud;
+const MONGODB_URI =
+  process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/todoVueDB";
+const port = 8080;
 
-const dbName = "mongodb://127.0.0.1:27017/todoVueDB";
 db = mongoose
-  .connect(dbName)
+  .connect(MONGODB_URI)
   .then(() => {
     console.log("成功連接MongoDB!");
   })
